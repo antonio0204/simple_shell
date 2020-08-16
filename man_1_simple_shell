@@ -1,0 +1,15 @@
+.TH "Simple Shell" 1 "15 August 2020" "0.1" "Simple Shell man page"
+
+.SH NAME
+hsh - Simple Shell
+
+.SH SYNOPSIS
+
+.B ./hsh
+[command] [options]
+
+.SH DESCRIPTION
+.B
+simple_shell is a simple implementation of the standard command interpreter for/
+the system that receives commands from standard input and  only a few  standard/
+shell features have been incorporated.
