@@ -8,7 +8,7 @@ char **tok_string(char *line)
 {
 	char *dlm = " \n";
 	char *commnd;
-	int size = 128;
+	int size = 128, count = 0;
 
 	char **line_cmd =  malloc(sizeof(char *) * size);
 
@@ -16,7 +16,14 @@ char **tok_string(char *line)
 		exit(EXIT_FAILURE);
 
 	commnd = strtok(line, dlm);
-	line_cmd[0] = commnd;
-	line_cmd[1] = NULL;
+
+	while(commnd)
+	{
+		line_cmd[count] = commnd;
+		commnd = strtok(NULL, dlm);
+		count++;
+	}
+	line_cmd[count] = NULL;
+
 	return (line_cmd);
 }
