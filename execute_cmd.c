@@ -8,14 +8,24 @@ void exec_cmd(char **argv)
 {
 	pid_t pid;
 	int status;
+	char *cmd_path;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(argv[0], argv, NULL) == EOF)
+		cmd_path = inclu_path(argv[0]);
+		if (cmd_path == NULL)
+		{
+			perror("Command not found");
+			free(argv[0]);
+			free(argv);
+			exit(EXIT_FAILURE);
+		}
+
+		if (execve(cmd_path, argv, environ) == EOF)
 		{
 			perror("./shell");
-			free(argv[0]);
+			free(cmd_path);
 			free(argv);
 			exit(EXIT_FAILURE);
 		}

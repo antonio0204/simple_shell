@@ -13,11 +13,14 @@ char **tok_string(char *line)
 	char **line_cmd =  malloc(sizeof(char *) * size);
 
 	if (line_cmd == NULL)
+	{
+		free(line_cmd);
 		exit(EXIT_FAILURE);
+	}
 
 	commnd = strtok(line, dlm);
 
-	while(commnd)
+	while (commnd)
 	{
 		line_cmd[count] = commnd;
 		commnd = strtok(NULL, dlm);
