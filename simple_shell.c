@@ -15,11 +15,14 @@ int main(void)
 
 	while (1)
 	{
-		print_prompt("#cisfun$ ");
+		print_prompt("$ ");
 		line_cmd = get_line();
 		if (line_cmd == NULL)
 			continue;
 		argv = tok_string(line_cmd);
+
+		if (argv[0] == NULL || is_builtin(&argv[0]) == 0)
+			continue;
 		exec_cmd(argv);
 	}
 	free(line_cmd);
