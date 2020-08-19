@@ -16,14 +16,10 @@ char *_strcat(char *dest, char *src)
 		dest = "";
 	if (src == NULL)
 		src = "";
-	while (dest[len1] != '\0')
-	{
+	while (dest[len1])
 		len1++;
-	}
-	while (src[len2] != '\0')
-	{
+	while (src[len2])
 		len2++;
-	}
 	conc = malloc(sizeof(char) * (len1 + (len2 + 1)));
 	if (conc == NULL)
 		return (NULL);
@@ -41,7 +37,7 @@ char *_strcat(char *dest, char *src)
 		len1++;
 	}
 	return (conc);
-	free(conc);
+	
 }
 
 /**
