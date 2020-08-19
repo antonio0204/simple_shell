@@ -7,7 +7,7 @@
 char *get_line(void)
 {
 	size_t len = 0;
-	ssize_t n;
+	int n;
 	char *buffer = NULL;
 
 	n = getline(&buffer, &len, stdin);
