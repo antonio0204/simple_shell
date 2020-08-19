@@ -9,12 +9,11 @@ char **tok_string(char *line)
 	char *dlm = " \n";
 	char *commnd;
 	int size = 128, count = 0;
-
 	char **line_cmd =  malloc(sizeof(char *) * size);
 
 	if (line_cmd == NULL)
 	{
-		free(line_cmd);
+		/*free(line_cmd);*/
 		exit(EXIT_FAILURE);
 	}
 
@@ -27,6 +26,7 @@ char **tok_string(char *line)
 		count++;
 	}
 	line_cmd[count] = NULL;
+	/*free(line_cmd);*/
 
 	return (line_cmd);
 }

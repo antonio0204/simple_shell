@@ -25,11 +25,12 @@ void display_env(char __attribute__((__unused__)) **args)
  */
 void exit_handler(char **args)
 {
-	int exit_status = 0, len1 = 0, len2 = 0;
+	int exit_status = 0, len1 = 0, len2 = 0, i;
 
 	if (args[1] == NULL)
 	{
-		free(*args);
+		free(args[0]);
+		free(args);
 		exit(EXIT_SUCCESS);
 	}
 
@@ -45,7 +46,12 @@ void exit_handler(char **args)
 	}
 	else
 	{
-		free(*args);
+		while (args[i])
+		{
+			free(args[i]);
+			i++;
+		}
+		free(args);
 		exit(exit_status);
 	}
 }

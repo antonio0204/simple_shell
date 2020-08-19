@@ -1,3 +1,4 @@
+![Simple_Shell](https://pbs.twimg.com/media/Ef0CEwpXkAE2ezz?format=png&name=900x900)
 # Simple_Shell
 It would be great to create your own shell right? in this repository we want to show you how we build a simple_shell for our final term work at holberton school.
 
@@ -8,7 +9,9 @@ where we will use calls to the system that will help us get our simple_shell to 
 shell is nothing more than our portal or means to communicate with the operating system services. three types of shell:
 
   - Text lines (CLI, Command-Line Interface, command line interface),
-  [![Lines text](https://upload.wikimedia.org/wikipedia/commons/a/a5/CLI-GUI-NUI%2C_evoluci%C3%B3n_de_interfaces_de_usuario.png)](https://es.wikipedia.org/wiki/Shell_(inform%C3%A1tica))
+
+![CLI](https://pbs.twimg.com/media/Ef0DdI2XsAAZnfX?format=png&name=small)
+
 ## flow chart
 ----
 [![Lines text](https://pbs.twimg.com/media/EfrhfYWWAAEYQXM?format=jpg&name=large)](https://github.com/ronald0204/simple_shell/tree/master)

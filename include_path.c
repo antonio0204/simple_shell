@@ -56,12 +56,14 @@ char *inclu_path(char *cmd)
 
 		if (stat(final_cmd, &fileStat) == 0)
 		{
+			free(slash_cmd);
 			free(directories);
 			return (final_cmd);
 		}
 		free(final_cmd);
 		i++;
 	}
+	free(slash_cmd);
 	free(directories);
 	return (NULL);
 }
