@@ -24,8 +24,9 @@ int main(void)
 		if (argv[0] == NULL || is_builtin(&argv[0]) == 0)
 			continue;
 		exec_cmd(argv);
+		free(line_cmd);
+		free(argv);
 	}
-	free(line_cmd);
-	free(argv);
+
 	return (0);
 }
