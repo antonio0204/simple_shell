@@ -1,13 +1,4 @@
-
-.d88888b  oo                     dP                       .d88888b  dP                dP dP 
-88.    "'                        88                       88.    "' 88                88 88 
-`Y88888b. dP 88d8b.d8b. 88d888b. 88 .d8888b.              `Y88888b. 88d888b. .d8888b. 88 88 
-      `8b 88 88'`88'`88 88'  `88 88 88ooood8                    `8b 88'  `88 88ooood8 88 88 
-d8'   .8P 88 88  88  88 88.  .88 88 88.  ...              d8'   .8P 88    88 88.  ... 88 88 
- Y88888P  dP dP  dP  dP 88Y888P' dP `88888P'               Y88888P  dP    dP `88888P' dP dP 
-                        88                   oooooooooooo                                   
-                        dP                            
-                                              
+![Simple_Shell](https://pbs.twimg.com/media/Ef0CEwpXkAE2ezz?format=png&name=900x900)
 # Simple_Shell
 It would be great to create your own shell right? in this repository we want to show you how we build a simple_shell for our final term work at holberton school.
 
@@ -18,13 +9,8 @@ where we will use calls to the system that will help us get our simple_shell to 
 shell is nothing more than our portal or means to communicate with the operating system services. three types of shell:
 
   - Text lines (CLI, Command-Line Interface, command line interface),
-           ________          ___               ___     
-          |\   ____\        |\  \             |\  \    
-          \ \  \___|        \ \  \            \ \  \   
-           \ \  \            \ \  \            \ \  \  
-            \ \  \____        \ \  \____        \ \  \ 
-             \ \_______\       \ \_______\       \ \__\
-              \|_______|        \|_______|        \|__|
+
+![CLI](https://pbs.twimg.com/media/Ef0DdI2XsAAZnfX?format=png&name=small)
 
 ## flow chart
 ----
