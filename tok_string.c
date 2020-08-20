@@ -1,32 +1,36 @@
 #include "shell.h"
+
 /**
- * tok_string - function separate the string in new strings
- * @line: string
- * Return:  a pointer to strings.
+ * tok_string - creates an array of string
+ * @line_cmd: string
+ * Return: array of string or NULL
  */
-char **tok_string(char *line)
+
+char **tok_string(char *line_cmd)
 {
-	char *dlm = " \t\n\r\a";
-	char *commnd;
-	int count = 0;
-	char **line_cmd =  malloc(sizeof(char *) * _strlen(line) + 1);
+	char **arg = NULL, *token = NULL;
+	size_t count = 0, space = 0;
 
 	if (line_cmd == NULL)
+		return (NULL);
+
+	for (count = 0; line_cmd[count]; count++)
 	{
-		/*free(line_cmd);*/
-		exit(EXIT_FAILURE);
+		if (line_cmd[count] == ' ')
+			space++;
 	}
+	if ((space + 1) == _strlen(line_cmd))
+		return (NULL);
+	arg = malloc(sizeof(char *) * (space + 2));
+	if (arg == NULL)
+		return (NULL);
 
-	commnd = strtok(line, dlm);
-
-	while (commnd)
+	token = strtok(line_cmd, " \n\t\r");
+	for (count = 0; token != NULL; count++)
 	{
-		line_cmd[count] = commnd;
-		commnd = strtok(NULL, dlm);
-		count++;
+		arg[count] = token;
+		token = strtok(NULL, " \n\t\r");
 	}
-	line_cmd[count] = NULL;
-	/*free(line_cmd);*/
-
-	return (line_cmd);
+	arg[count] = NULL;
+	return (arg);
 }

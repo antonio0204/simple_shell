@@ -1,69 +1,47 @@
 #include "shell.h"
-/**
- * div_dir_path - function separate the path in new strings
- * @path: string
- * Return:  a pointer to strings.
- */
-char **div_dir_path(char *path)
-{
-	int pos = 0;
-	char *dlm = ":";
-	char **directories = malloc(sizeof(char *) * _strlen(path) + 1);
-	char *dir_split;
-
-
-	if (directories == NULL)
-	{
-		exit(EXIT_FAILURE);
-	}
-	dir_split = strtok(path, dlm);
-
-	while (dir_split != NULL)
-	{
-		directories[pos] = dir_split;
-		pos++;
-		dir_split = strtok(NULL, dlm);
-
-	}
-	directories[pos] = NULL;
-	return (directories);
-}
 
 /**
- * inclu_path - function to get the PATH enviroment.
- * @cmd: pointer to enviroment variable.
- * Return:  the PATH in a string.
+ *include_path - Concatenates paths
+ *@arg: Command
+ *@env: Envitonment
+ *Return: 0 or -1
  */
-char *inclu_path(char *cmd)
+
+int include_path(char **arg, char **env)
 {
-	struct stat fileStat;
-	char *dir_split = NULL;
-	char **directories = NULL;
-	char *final_cmd = NULL;
-	char *slash_cmd = NULL;
-	char *slash = "/";
-	int i = 0;
+	char *token = NULL, *path = NULL, *dir = NULL;
+	size_t folder, command;
+	struct stat stat_buf;
 
-	dir_split = _getenv("PATH");
-	directories = div_dir_path(dir_split);
-	if (stat(cmd, &fileStat) == 0)
-		return (cmd);
-	slash_cmd = _strcat(slash, cmd);
-
-	while (directories[i])
+	if (stat(*arg, &stat_buf) == 0)
+		return (-1);
+	path = _getpath(env);
+	if (!path)
+		path = "/bin:";
+	token = strtok(path, ":");
+	command = _strlen(*arg);
+	while (token)
 	{
-		final_cmd = _strcat(directories[i], slash_cmd);
-
-		if (stat(final_cmd, &fileStat) == 0)
+		folder = _strlen(token);
+		dir = malloc(sizeof(char) * (folder + command + 2));
+		if (!dir)
 		{
-			free(slash_cmd);
-			free(directories);
-			return (final_cmd);
+			free(path);
+			return (-1);
 		}
-		free(final_cmd);
-		i++;
+		dir = _strcpy(dir, token);
+		_strcat(dir, "/");
+		_strcat(dir, *arg);
+
+		if (stat(dir, &stat_buf) == 0)
+		{
+			*arg = dir;
+			free(path);
+			return (0);
+		}
+		free(dir);
+		token = strtok(NULL, ":");
 	}
-	free(slash_cmd);
-	free(directories);
-	return (NULL);
+	free(path);
+	return (-1);
 }

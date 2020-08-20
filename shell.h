@@ -1,48 +1,28 @@
 #ifndef SHELL_H
 #define SHELL_H
-#define _GNU_SOURCE
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
 #include <sys/types.h>
-#include <sys/wait.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
+#include <errno.h>
 
-extern char **environ;
-extern char *program_invocation_name;
+char *print_prompt(void);
+char **tok_string(char *line_cmd);
+int execute(char **arg, char **av, char **env, char *line_cmd, int np, int c);
+char *_getpath(char **env);
+int include_path(char **arg, char **env);
+void exit_b(char **arg, char *line_cmd, int _exit, int np, char **av);
+void display_env(char **env);
 
-/**
- * struct builtin_s - struct to find a built_in command
- *and its associated funct
- *
- * @command: command written by the user
- * @fp: The function associated
- */
-typedef struct builtin_s
-{
-	char *command;
-	void (*fp)(char **);
-} builtin_t;
-
-int _putchar(char c);
-void _puts(char *str);
-void print_prompt(char *s);
-char *get_line(void);
-char **tok_string(char *line);
-void exec_cmd(char **argv);
-char *inclu_path(char *cmd);
-char *_getenv(char *name);
 char *_strcat(char *dest, char *src);
-int _strcmp(char *s1, char *s2);
-char *_strdup(char *str);
-int _strlen(const char *s);
-int is_builtin(char **argv);
-char *_strdup(char *str);
-int _atoi(char *s);
+size_t _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
+size_t _strncmp(char *s1, char *s2, size_t n);
+size_t _strlen(char *s);
+void ctrl_c(int sigin);
 
-
-
-
-#endif /*SHELL_H*/
+#endif /* SHELL_H */

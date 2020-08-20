@@ -105,7 +105,7 @@ shell is nothing more than our portal or means to communicate with the operating
 | get_line.c | Functions get input from stdin and tokenize |
 | include_path.c | Function separate the path in new strings |
 | man_1_simple_shell | Simple_shell usage manual |
-| print_functions.c | Standard output - character, string, prints a prompt for the shell |
+| print_functions.c | Standard output - character, string, prints a print_prompt for the shell |
 | shell.h | Header file with libraries and prototypes |
 | simple_shell.c | Creates a child process in which it executes the command |
 | string_funtion.c | Concatenates two strings |
