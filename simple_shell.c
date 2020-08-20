@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 	int i = 0, _exit = 0, count = 0;
 	(void)ac;
 
-	signal(SIGINT, ctrl_c);
+	
 	while (1)
 	{
 		line_cmd = print_prompt();

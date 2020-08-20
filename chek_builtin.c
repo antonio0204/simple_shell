@@ -63,15 +63,4 @@ void display_env(char **env)
 	}
 }
 
-/**
- *ctrl_c - To avoid closing the program when ctrl + c is pressed
- *@sigin: void
- */
 
-void ctrl_c(int sigin)
-{
-	(void)sigin;
-
-	write(STDOUT_FILENO, "\n", 1);
-	write(STDOUT_FILENO, "$ ", 2);
-}
