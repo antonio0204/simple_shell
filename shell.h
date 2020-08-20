@@ -1,5 +1,6 @@
 #ifndef SHELL_H
 #define SHELL_H
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <string.h>
@@ -9,6 +10,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <errno.h>
+extern char **environ;
 
 char *print_prompt(void);
 char **tok_string(char *line_cmd);
