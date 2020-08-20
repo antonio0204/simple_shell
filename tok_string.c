@@ -6,10 +6,10 @@
  */
 char **tok_string(char *line)
 {
-	char *dlm = " \n";
+	char *dlm = " \t\n\r\a";
 	char *commnd;
-	int size = 128, count = 0;
-	char **line_cmd =  malloc(sizeof(char *) * size);
+	int count = 0;
+	char **line_cmd =  malloc(sizeof(char *) * strlen(line) + 1);
 
 	if (line_cmd == NULL)
 	{
