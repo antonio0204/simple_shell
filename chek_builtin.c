@@ -1,83 +1,77 @@
 #include "shell.h"
 
 /**
- * display_env - This funcition prints in the stdout
- * the enviromental variables.
- * @args: Pointer with the direction to free  the allocated memory for
- * the  arguments passed to the program.
- * Return: None.
+ *exit_b - Built-in to exit
+ *@arg: Arguments
+ *@line_cmd: Input string
+ *@_exit: Number of exit
+ *@np: Number of process
+ *@av: Name of program
  */
-void display_env(char __attribute__((__unused__)) **args)
-{
-	char **ep;
 
-	for (ep = environ; *ep != NULL; ep++)
+void exit_b(char **arg, char *line_cmd, int _exit, int np, char **av)
+{
+	int status = 0, idx;
+	char *format = "%s: %d: exit: Illegal number: %d\n";
+	char *format1 = "%s: %d: exit: Illegal number: %s\n";
+
+	if (!arg[1])
 	{
-		_puts(*ep);
-		_putchar('\n');
+		free(line_cmd);
+		free(arg);
+		exit(_exit);
+	}
+	for (idx = 0; arg[1][idx] != '\0'; idx++)
+	{
+		if (arg[1][idx] < 48 && arg[1][idx] > 57)
+		{
+			fprintf(stderr, format1, av[0], np, arg[1]);
+			free(line_cmd);
+			free(arg);
+			exit(2);
+		}
+	}
+	status = atoi(arg[1]);
+	if (status < 0)
+	{
+		status = 2;
+		fprintf(stderr, format, av[0], np, status);
+	}
+	if (status == 1000)
+		status = 232;
+
+	free(line_cmd);
+	free(arg);
+	exit(status);
+}
+
+/**
+ *display_env - Built-in to enviroment
+ *@env: Enviroment
+ *Return: 0
+ */
+
+void display_env(char **env)
+{
+	size_t run = 0;
+
+	while (env[run])
+	{
+		write(STDOUT_FILENO, env[run], _strlen(env[run]));
+		write(STDOUT_FILENO, "\n", 1);
+		run++;
 	}
 }
+
 /**
- * exit_handler - this function closes the prompt when the exit cmd is passed
- * @args: Pointer with the direction to free  the allocated memory for
- * the  arguments passed to the program.
- * Return: None
+ *ctrl_c - To avoid closing the program when ctrl + c is pressed
+ *@sigin: void
  */
-void exit_handler(char **args)
+
+void ctrl_c(int sigin)
 {
-	int exit_status = 0, len1 = 0, len2 = 0, i;
+	(void)sigin;
 
-	if (args[1] == NULL)
-	{
-		free(args[0]);
-		free(args);
-		exit(EXIT_SUCCESS);
-	}
-
-	exit_status = _atoi(args[1]);
-	if (exit_status == -1)
-	{
-		len1 = _strlen(program_invocation_name);
-		len2 = _strlen(": 1: exit: Illegal number: ");
-		write(STDERR_FILENO, program_invocation_name, len1);
-		write(STDERR_FILENO, ": 1: exit: Illegal number: ", len2);
-		write(STDERR_FILENO, args[1], _strlen(args[1]));
-		write(STDERR_FILENO, "\n", 1);
-	}
-	else
-	{
-		while (args[i])
-		{
-			free(args[i]);
-			i++;
-		}
-		free(args);
-		exit(exit_status);
-	}
-}
-/**
- * is_builtin - checks if the argument is a builtin
- * @argv: builtin to search
- *
- * Return: 0 if a builtin is founded, -1 if not.
- */
-int is_builtin(char **argv)
-{
-	builtin_t builtin[] = {
-		/*{"exit", exit_handler},*/
-		{"env", display_env},
-		{NULL, NULL},
-	};
-	int i = 0;
-
-	while (builtin[i].command != NULL)
-	{
-		if (_strcmp(*argv, builtin[i].command) == 0)
-		{
-			builtin[i].fp(argv);
-			return (0);
-		}
-		i++;
-	}
-	return (-1);
+	write(STDOUT_FILENO, "\n", 1);
+	write(STDOUT_FILENO, "$ ", 2);
 }

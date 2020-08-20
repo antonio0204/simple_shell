@@ -1,52 +1,52 @@
 #include "shell.h"
-/**
-* free_args - get free arguments
-* @args: double pointer to free
-*
-*/
-void free_args(char **args)
-{
-	int i = 0;
 
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	if (args)
-		free(args);
-}
 /**
-* main - simple command-line argument interpreter
-* prints a prompt and waits for the user to input a command
-* then creates a child process in which it executes the command
-* Enter the "infinite" loop of the shell
-* Return: always 0, for success
-*
-*/
-int main(void)
-{
-	char **argv = NULL;
-	char *line_cmd = NULL;
+ *main - Principal file for shell
+ *@ac: Argument count
+ *@av: Argument value
+ *@env: Environment
+ *Return: 0
+ */
 
+int main(int ac, char **av, char **env)
+{
+	char *line_cmd = NULL, **arg = NULL;
+	int i = 0, _exit = 0, count = 0;
+	(void)ac;
+
+	signal(SIGINT, ctrl_c);
 	while (1)
 	{
-		print_prompt("$ ");
-		line_cmd = get_line();
-		if (line_cmd == NULL)
-			continue;
-		argv = tok_string(line_cmd);
-
-		if (!_strcmp(argv[0], "exit") && argv[1] == NULL)
-			free(argv[0]), free(argv), exit(EXIT_SUCCESS);
-
-		if (argv[0] == NULL || is_builtin(&argv[0]) == 0)
-			continue;
-		exec_cmd(argv);
+		line_cmd = print_prompt();
+		if (line_cmd)
+		{
+			i++;
+			arg = tok_string(line_cmd);
+			if (!arg)
+			{
+				free(line_cmd);
+				continue;
+			}
+			if (!_strcmp(arg[0], "exit"))
+				exit_b(arg, line_cmd, _exit, i, av);
+			if (!_strcmp(arg[0], "env"))
+				display_env(env);
+			else
+			{
+				count = include_path(&arg[0], env);
+				_exit = execute(arg, av, env, line_cmd, i, count);
+				if (count == 0)
+					free(arg[0]);
+			}
+			free(arg);
+		}
+		else
+		{
+			if (isatty(STDIN_FILENO))
+				write(STDOUT_FILENO, "\n", 1);
+			exit(_exit);
+		}
 		free(line_cmd);
-		free(argv);
 	}
-	free_args(argv);
-
-	return (0);
+	return (_exit);
 }
