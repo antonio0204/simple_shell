@@ -8,7 +8,7 @@ char **div_dir_path(char *path)
 {
 	int pos = 0;
 	char *dlm = ":";
-	char **directories = malloc(sizeof(char *) * strlen(path) + 1);
+	char **directories = malloc(sizeof(char *) * _strlen(path) + 1);
 	char *dir_split;
 
 

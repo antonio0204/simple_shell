@@ -9,7 +9,7 @@ char **tok_string(char *line)
 	char *dlm = " \t\n\r\a";
 	char *commnd;
 	int count = 0;
-	char **line_cmd =  malloc(sizeof(char *) * strlen(line) + 1);
+	char **line_cmd =  malloc(sizeof(char *) * _strlen(line) + 1);
 
 	if (line_cmd == NULL)
 	{
