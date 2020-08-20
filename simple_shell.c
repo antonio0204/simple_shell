@@ -37,7 +37,7 @@ int main(void)
 			continue;
 		argv = tok_string(line_cmd);
 
-		if (!strcmp(argv[0], "exit") && argv[1] == NULL)
+		if (!_strcmp(argv[0], "exit") && argv[1] == NULL)
 			free(argv[0]), free(argv), exit(EXIT_SUCCESS);
 
 		if (argv[0] == NULL || is_builtin(&argv[0]) == 0)
