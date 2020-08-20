@@ -64,7 +64,7 @@ void exit_handler(char **args)
 int is_builtin(char **argv)
 {
 	builtin_t builtin[] = {
-		{"exit", exit_handler},
+		/*{"exit", exit_handler},*/
 		{"env", display_env},
 		{NULL, NULL},
 	};
