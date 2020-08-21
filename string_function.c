@@ -13,9 +13,7 @@ char *_strcat(char *dest, char *src)
 	int s = 0;
 
 	while (dest[d] != '\0')
-	{
 		d++;
-	}
 	while (src[s] != '\0')
 	{
 		dest[d] = src[s];
@@ -56,9 +54,7 @@ int _strlen(char *s)
 	int ch = 0;
 
 	while (*(s + ch) != '\0')
-	{
 		ch++;
-	}
 
 	return (ch);
 }
@@ -80,9 +76,7 @@ size_t _strncmp(char *s1, char *s2, size_t n)
 		i = s1[j] - s2[j];
 
 		if (i != 0)
-		{
 			return (i);
-		}
 	}
 	return (0);
 }
@@ -108,3 +102,4 @@ char *_strcpy(char *dest, char *src)
 
 	return (dest);
 }
+
