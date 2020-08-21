@@ -14,7 +14,7 @@ shell is nothing more than our portal or means to communicate with the operating
 
 ## flow chart
 ----
-[![Lines text](https://pbs.twimg.com/media/EfrhfYWWAAEYQXM?format=jpg&name=large)](https://github.com/ronald0204/simple_shell/tree/master)
+[![Lines text](https://pbs.twimg.com/media/Ef6htWaX0AcaRTI?format=png&name=small)](https://github.com/ronald0204/simple_shell/tree/master)
 ## test the operation of our simple_shell!
 -----------------------------------
 - Clone this repo:
