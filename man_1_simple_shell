@@ -1,21 +1,15 @@
 .TH "Simple Shell" 1 "18 August 2020" "0.2" "Simple Shell man page"
-
 .SH NAME
 hsh - Simple Shell
-
 .SH SYNOPSIS
-
 .B ./hsh
 [command] [options]
-
 .SH DESCRIPTION
 .B
 simple_shell is a simple implementation of the standard command interpreter for/
 the system that receives commands from standard input and  only a few  standard/
 shell features have been incorporated.
-
 .B Overview
-
 The simple shell is a simplified iteration of a command line interpreter, similar to
 .B bash or
 .B dash.
@@ -43,20 +37,51 @@ or
 .I non-interactive
 mode.  The user may quit the program by typing "exit", "Ctrl + D", or "Ctrl + C" on the command line.
 When the program quits or a command has been executed,
-
+.SH Path Search
+When locating a command, the shell first looks to see if it has a shell function by that name. Then it looks for a builtin command by that name. If a built-in command is not found, one of two things happen:
+1. Command names containing a slash are simply executed without performing any searches.
+2. The shell searches each entry in the PATH variable in turn for the command. The value of the PATH variable should be a series of entries separated by colons. Each entry consists of a directory name. The current directory may be indicated implicitly by an empty directory name, or explicitly by a single period.
+.B Command Exit Status
+Each command has an exit status that can influence the behavior of other shell commands. The paradigm is that a command exits with zero for normal or success, and non-zero for failure, error, or a false indication. The man page for each command should indicate the various exit codes and what they mean. Additionally, the built-in commands return exit codes, as does an executed shell function.
+If a command is terminated by a signal, its exit status is greater than 128. The signal name can be found by passing the exit status to kill -l.
+If there is no command word, the exit status is the exit status of the last command substitution executed, or zero if the command does not contain any command substitutions.
+.SH ENVIRONMENT
+Environment variables affect the execution of
+.B sh
+:
+     ENV	Initialization file for interactive shells.
+.SH EXIT STATUS
+Errors that are detected by the shell, such as a syntax error, will cause the shell to exit with a non-zero exit status. If the shell is not an interactive shell, the execution of the shell file will be aborted. Otherwise the shell will return the exit status of the last command executed, or if the
+.B exit
+builtin is used with a numeric argument, it will return the argument.
+.SH EXAMPLES
+Below an example of interactive mode:
+.RS +4
+$ ./hsh
+.RE
+.RS +4
+($) /bin/ls
+.RE
+.RS +4
+hsh main.c shell.c
+.RE
+.RS +4
+($)
+.RE
+.RS +4
+($) exit
+.RE
+.RS +4
+$
 EXAMPLE:
 $ echo "ls -la" | ./hsh
-
 .SH BUILT-IN COMMANDS
 .B env
 - prints environment
 .B exit
 - exits the hsh - Simple Shell
-
 .SH BUGS
 No known bugs.
-
 Report bugs to https://github.com/ronald0204/simple_shell.git
-
 .SH AUTHOR
 cristian bedoya, Ronald Aguirre
