@@ -61,36 +61,36 @@ shell is nothing more than our portal or means to communicate with the operating
 ```
 ## List of allowed functions and system calls for this project
 -----------------------------
-> **access** (man 2 access)
-> **chdir** (man 2 chdir)
-> **close** (man 2 close)
-> **closedir** (man 3 closedir)
-> **execve** (man 2 execve)
-> **exit** (man 3 exit)
-> **_exit** (man 2 _exit)
-> **fflush** (man 3 fflush)
-> **fork** (man 2 fork)
-> **free** (man 3 free)
-> **getcwd** (man 3 getcwd)
-> **getline** (man 3 getline)
-> **isatty** (man 3 isatty)
-> **kill** (man 2 kill)
-> **malloc** (man 3 malloc)
-> **open** (man 2 open)
-> **opendir** (man 3 opendir)
-> **perror** (man 3 perror)
-> **read** (man 2 read)
-> **readdir** (man 3 readdir)
-> **signal** (man 2 signal)
-> **stat (__xstat)** (man 2 stat)
-> **lstat (__lxstat)** (man 2 lstat)
-> **fstat (__fxstat)** (man 2 fstat)
-> **strtok** (man 3 strtok)
-> **wait** (man 2 wait)
-> **waitpid** (man 2 waitpid)
-> **wait3** (man 2 wait3)
-> **wait4** (man 2 wait4)
-> **write** (man 2 write)
+* `access` (man 2 access)
+* `chdir` (man 2 chdir)
+* `close` (man 2 close)
+* `closedir` (man 3 closedir)
+* `execve` (man 2 execve)
+* `exit` (man 3 exit)
+* `exit` (man 2 _exit)
+* `fflush` (man 3 fflush)
+* `fork` (man 2 fork)
+* `free` (man 3 free)
+* `getcwd` (man 3 getcwd)
+* `getline` (man 3 getline)
+* `isatty` (man 3 isatty)
+* `kill` (man 2 kill)
+* `malloc` (man 3 malloc)
+* `open` (man 2 open)
+* `opendir` (man 3 opendir)
+* `perror` (man 3 perror)
+* `read` (man 2 read)
+* `readdir` (man 3 readdir)
+* `signal` (man 2 signal)
+* `stat` (__xstat)** (man 2 stat)
+* `lstat` (__lxstat)** (man 2 lstat)
+* `fstat` (__fxstat)** (man 2 fstat)
+* `strtok` (man 3 strtok)
+* `wait` (man 2 wait)
+* `waitpid` (man 2 waitpid)
+* `wait3` (man 2 wait3)
+* `wait4` (man 2 wait4)
+* `write` (man 2 write)
 
 ### File
 ------------------- 
@@ -98,14 +98,12 @@ shell is nothing more than our portal or means to communicate with the operating
 
 | File | Contents |
 | ------ | ------ |
-| _atoi.c | Convert a string to an integer |
 | _getenv.c | Function to get the PATH env |
 | chek_builtin.c | Checks if the argument is a builtin |
 | execute_cmd.c | Execute - function to execute, implement fork and child process |
 | get_line.c | Functions get input from stdin and tokenize |
 | include_path.c | Function separate the path in new strings |
 | man_1_simple_shell | Simple_shell usage manual |
-| print_functions.c | Standard output - character, string, prints a prompt for the shell |
 | shell.h | Header file with libraries and prototypes |
 | simple_shell.c | Creates a child process in which it executes the command |
 | string_funtion.c | Concatenates two strings |
